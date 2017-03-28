@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <script type="text/javascript">
+        function on (ele, event, fn) {
+            ele.listener = ele.listener || {}
+            ele.listener[event] = ele.listener[event] || []
+            ele.listener[event].push(fn)
+            ele.addEventListener(event, fn)
+        }
+        function trigger (ele, event, data) {
+            const events = ele.listener[event]
+            events.forEach((v) => {
+                v(data)
+            })
+        }
+        var oDiv = document.getElementById('div1')
+        on(oDiv, 'show', function(data){
+            console.log(data)
+        })
+        trigger(oDiv, 'show', {a:1})
+    </script>
+</body>
+</html>

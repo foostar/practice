@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        Promise.resolve({a:1})
+        .then((data) => {
+            return a.b.c.d()
+        }).catch(ReferenceError, function() {
+            console.log("err", ReferenceError)
+         //If a is defined, will end up here because
+         //it is a type error to reference property of undefined
+        }).catch(ReferenceError, function() {
+            console.log("error", ReferenceError)
+         //Will end up here if a wasn't defined at all
+        }).catch(function(e) {
+            console.log(e)
+         //Generic catch-the rest, error wasn't TypeError nor
+         //ReferenceError
+        });
+        
+    </script>
+</body>
+</html>

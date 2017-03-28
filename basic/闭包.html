@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // function faa (a,b,c) {
+        //     var sum = faa(a,b,c)
+        //     console.log(sum)
+        //     return function bbb (a,b,c) {
+        //         return a + b + c
+        //     }
+        // }
+        // const result = faa(1, 2, 3)
+        // console.log(result)
+        // var data = {}
+        // function wrap (id, fn) {
+        //     this[id] = id
+        //     this.callback = fn
+        // }
+        // const aaa = new wrap(12, function() {
+        //     console.log(123)
+        // })
+        // aaa.callback()
+        // const result1 = faa(3, 4, 5)
+        // console.log(result1())
+        // const isAuthedMiddleware = fn => (req, res, next) => {
+        //     let appId = fn(req)
+        //     if (/api/.test(req.requestTime[0])) {
+        //         appId = req.requestTime[0].match(/\d+/g)[0]
+        //     }
+        //     isAuthed(appId)
+        //         .then((authed) => {
+        //             if (authed) return next()
+        //             res.status(404).end()
+        //         }, () => {
+        //             res.status(404).end()
+        //         })
+        // }
+        function wrap(time, fn){
+            return function() {
+                if(time > 0){
+                    time--
+                    fn()
+                    wrap(time, fn)()
+                } 
+            }
+        }
+        const result = wrap(5,() => console.log(123))
+        result()
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        Array.prototype.myMap = function myMap(callback,context){
+            context = context || window;
+            //IE6-8下自己编写回调函数执行的逻辑
+            var newAry = [];
+            for(var i = 0,len = this.length; i < len;i++) {
+                if(typeof  callback === 'function') {
+                    var val = callback.call(context,this[i],i,this);
+                    newAry[newAry.length] = val;
+                }
+            }
+            return newAry;
+        }
+        Array.prototype.myforEach = function(callback, context) {  
+            context = context || window;
+            //IE6-8下自己编写回调函数执行的逻辑
+            for(var i = 0,len = this.length; i < len;i++) {
+                callback.call(context,this[i],i,this);
+            }
+        };  
+        var arr1 = [1, 2, 3]
+        // for(var i=0;i<arr1.length;i++) {
+        //     arr1[i] = i
+        // }
+        // var arr2 = arr1.myMap((item) => {
+        //     return item+=10
+        // })
+        var arr2 = arr1.myforEach((item, index) => {
+            item = index
+        })
+        console.log(arr1)
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        $("<div><div>111</div></div><div></div><div></div><div></div>", document)
+
+
+        var fragment = document.createDocumentFragment()
+        var wrapper = document.createElement("div")
+        var str = "<div><div>111</div></div><div>2</div><div>3</div><div>4</div><script><\/script>"
+        fragment.appendChild(wrapper);
+        wrapper.innerHTML = str
+        while(wrapper.children.length--){
+            fragment.appendChild(wrapper.firstChild)
+        }
+        fragment.removeChild(wrapper)
+
+    </script>
+</body>
+</html>

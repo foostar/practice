@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="div1">
+        <li data-id="1">1</li>
+        <li data-id="1">2</li>
+        <li data-id="1">3</li>
+    </ul>
+    <script src="jquery.js"></script>
+    <script type="text/javascript">
+        $(".div1").on('click', function(e) {
+            console.log(e.target)
+        })
+        var readyList = $.Deferred()
+        var xiu = function () {
+            return new xiu.prototype.init()
+        }
+        xiu.fn = xiu.prototype = {
+            constructor: xiu,
+            ready:function(callback){
+                readyList.then((data) => {
+                    callback.call(data.point, data.args)
+                })
+            }
+        }
+        xiu.doReady = function(){
+            if(this.isReady) return
+            this.isReady = true   
+            readyList.resolve({point:document, args:xiu})
+        } 
+        var init = xiu.fn.init = function () {
+            this.isReady = false
+        }
+        init.prototype = xiu.prototype;
+        if ( document.readyState === "complete" ||
+            ( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
+
+            // Handle it asynchronously to allow scripts the opportunity to delay ready
+            window.setTimeout( xiu.doReady );
+
+        } else {
+
+            // Use the handy event callback
+            document.addEventListener( "DOMContentLoaded", completed );
+
+            // A fallback to window.onload, that will always work
+            window.addEventListener( "load", completed );
+        }
+        function completed() {
+            document.removeEventListener( "DOMContentLoaded", completed );
+            window.removeEventListener( "load", completed );
+            xiu.doReady();
+        }
+        xiu().ready(function(arg){
+            console.log(this,arg,Date.now())
+        })
+        $(function(){
+            console.log(111,Date.now())
+        })
+    </script>
+</body>
+</html>

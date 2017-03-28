@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        var a = {a:1}
+        var b = {name: {age: { number: 20 } } }
+        var c = {name: {age: { number: 30 } } }
+        var d = extend({}, a, b, c)
+        d.name.age.number = 40
+        console.log(d,b,c)
+        function extend() {
+            var target = arguments[0] || {},
+            len = arguments.length,
+            temp = null,
+            copy
+            for(var i = 1;i < len; i++) {
+                temp = arguments[i];
+                for(var name in temp) {
+                    copy = temp[name]
+                    if(Object.prototype.toString.call(copy) == '[object Object]') {
+                        target[name] = extend({}, copy)
+                    } else {
+                        target[name] = copy
+                    }
+                }
+            }
+            return target
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function Promise(fn) {
+            var value = null,
+                state = 'pending',
+                deferreds = [];
+
+            this.then = function (onFulfilled) {
+                return new Promise(function (resolve) {
+                    if (state === 'pending') {
+                        deferreds.push(onFulfilled);
+                        return;
+                    }
+
+                    var ret = onFulfilled(value);
+                    resolve(ret);
+                });
+            };
+            function resolve(newValue) {
+                if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
+                    var then = newValue.then;
+                    if (typeof then === 'function') {
+                        then.call(newValue, resolve);
+                        return;
+                    }
+                }
+                state = 'fulfilled';
+                value = newValue;
+                setTimeout(function () {
+                    deferreds.forEach(function (deferred) {
+                        deferred(newValue);
+                    });
+                }, 0);
+            }
+            fn(resolve);
+        }
+        new Promise((resolve) => {
+            resolve({a:1})
+        })
+        .then((data) => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(Object.assign(data, {b:2}))
+                }, 3000)
+            })
+            //return {b:2}
+        })
+        .then(data => {
+            console.log(data)
+        })
+    </script>
+</body>
+</html>

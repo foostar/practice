@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // function half(arr, value){
+        //     var start = 0,
+        //     stop = arr.length - 1,
+        //     middle = Math.floor((start + stop) / 2)
+        //     while(arr[middle] != value && start < stop) {
+        //         if(arr[middle] < value) {
+        //             start = middle + 1
+        //         } else {
+        //             stop = middle - 1
+        //         }
+        //         middle = Math.floor((start + stop) / 2)
+        //     }
+        //     return middle
+        // }
+        var arr = [1,2,3,4,5,6,7,8]
+        console.log(half(arr, 5))
+        function half(arr, value) {
+            var start = 0,
+            stop = arr.length,
+            middle = Math.floor((start+ stop)/2)
+            while(arr[middle] != value && start < stop) {
+                if(arr[middle]<value) {
+                    start += 1
+                } else {
+                    stop -= 1
+                }
+                middle = Math.floor((start+ stop)/2)
+            }
+            return middle
+        }
+    </script>
+</body>
+</html>

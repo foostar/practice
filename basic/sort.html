@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var arr = [{
+            name:'ddd', age: 14, money: 5000
+        },{
+            name:'eee', age: 14, money: 3000
+        },{
+            name:'aaa', age: 12, money: 4000
+        },{
+            name:'bbb', age: 13, money: 4000
+        },{
+            name:'ccc', age: 12, money: 3000
+        }]
+        var arr1 = arr.sort(function(a,b) {
+            if (a.age == b.age) {
+                return a.money - b.money
+            }
+            return a.age - b.age
+        })
+        console.log(arr1)
+    </script>
+</body>
+</html>

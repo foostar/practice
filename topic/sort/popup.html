@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var arr = [2,4,3,5,1]
+        function quick(arr){
+            if(arr.length<=1) return arr;
+            var middle = Math.floor((arr.length-1) / 2),
+            pMiddle = arr.splice(middle, 1)[0],
+            left = [],
+            right = []
+            for(var i = 0; i < arr.length; i++) {
+                if(arr[i] < pMiddle) {
+                    left.push(arr[i])
+                } else {
+                    right.push(arr[i])
+                }
+            }
+            return quick(left).concat([pMiddle], quick(right))
+        }
+        console.log(quick(arr))
+    </script>
+</body>
+</html>

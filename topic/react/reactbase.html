@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+    </div>
+    <script type="text/javascript" src="../jquery/jquery.js"></script>
+    <script type="text/javascript">
+        $(() => {
+            function ReactDomComponent(text){
+                this._currentElement = text
+                this._rootNodeId = null
+            }
+            ReactDomComponent.prototype.mountComponent = function(index) {
+                this._rootNodeId = index
+                return '<span react-id='+index+'>'+this._currentElement+'</span>'
+            }  
+            function ReactComponent (node) {
+                if(typeof node == ('string' || 'number')) {
+                    var reactdom = new ReactDomComponent(node)
+                    console.log(reactdom)
+                    return reactdom
+                }
+            } 
+            var React = {
+                nextIndex:0,
+                render: function(element,container){
+                    var component = ReactComponent(element)
+                    var markup = component.mountComponent(React.nextIndex++)
+                    $(container).html(markup)
+                    $(document).trigger('mountReady')
+                }
+            }
+            React.render('hello world', document.getElementById('container'))
+        })
+    </script>
+</body>
+</html>

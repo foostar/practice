@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    Array.prototype.arrmap = function (fn, context) {
+        context = context || window
+        const arr = []
+        for(let i = 0; i < this.length; i++) {
+            const tmp = fn.call(context, this[i], i, this)
+            arr[arr.length] = tmp
+        }
+        return arr
+    }
+    var arr = [1, 2, 3]
+    const arr1 = arr.arrmap((v, i) => {
+        return v+1
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    html{
+        height:100%;
+    }
+    .Aligner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height:100%;
+    }
+
+    .Aligner-item {
+      max-width: 50%;
+      flex:1;
+      text-align:center;
+      background:#999;
+    }
+
+    .Aligner-item--top {
+      align-self: flex-start;
+    }
+
+    .Aligner-item--bottom {
+      align-self: flex-end;
+    }
+    </style>
+</head>
+<body class="Aligner">
+    <div class="Aligner-item Aligner-item--top">top</div>
+    <div class="Aligner-item">center</div>
+    <div class="Aligner-item Aligner-item--bottom">bottom</div>
+</body>
+</html>

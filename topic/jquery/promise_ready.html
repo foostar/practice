@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <script type="text/javascript">
+        //var oDiv1 = document.getElementById('div1')
+
+        
+        var xiu = {
+            promise(){
+                return new Promise((reslove) => {
+                    console.log(document.readyState)
+                    if(document.readyState == 'complete') {
+                        reslove({point:document, arg:3})
+                    } else {
+                        document.addEventListener( "DOMContentLoaded", completed );
+                        window.addEventListener( "load", completed );
+                        function completed() {
+                            document.removeEventListener( "DOMContentLoaded", completed );
+                            window.removeEventListener( "load", completed );
+                            reslove({point:document, arg:3})
+                        }
+                    }
+                })
+            },
+            ready(fn) {
+                return this.promise().then((data) => fn.call(this))
+            }
+        }
+
+
+        // ready(function() {console.log(111)})
+        // ready(function() {console.log(222)})
+        // ready(function() {console.log(333)})
+        // setTimeout(function() {
+        //     xiu.ready(function() {console.log(444,this)})
+        // },3000)
+        xiu.ready(function() {console.log(444,this)})
+        // window.onLoad = function () {
+            
+            
+        //     var oDiv1 = document.getElementById("div1")
+        //     var oDiv2 = document.getElementById("div2")
+        //     console.log(oDiv1)
+            
+        // }
+    </script>
+</body>
+</html>

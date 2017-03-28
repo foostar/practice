@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        console.log($("div"))
+        var aDiv = document.getElementsByTagName('div')
+        console.log($.makeArray(aDiv, {length: 0}))
+        console.log(document.getElementsByTagName('div'))
+    </script>
+</body>
+</html>

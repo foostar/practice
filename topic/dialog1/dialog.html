@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dialog</title>
+    <meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name=”format-detection” content=”telephone=no” />
+    <link type="text/css" href="dialog.css" rel="stylesheet">
+    <style>
+        body{
+            font-size:16px;
+        }
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+            box-sizing: border-box;
+        }
+        .btn{
+            padding:10px 30px;
+            background:#886371;
+            color:#fff;
+            font-size:20px;
+            border-radius:10px;
+            margin-bottom:50px;
+        }
+        .dialog_container{
+            width:100%;
+            height:100%;
+            position: fixed;
+            left:0;
+            top:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:#fff;
+        }
+        .dialog{
+            transform: scale(0);
+            border-radius: 10px;
+            max-width: 70%;
+            word-break: break-all;
+        }
+        .dialog_show .dialog{
+            transform: scale(1);
+            transition:all .4s cubic-bezier(0.4, 0.3, 0.44, 1.66)
+        }
+        .mask{
+            width:100%;
+            height:100%;
+            background:#000;
+            opacity:0.6;
+        }
+        .dialog_footer{
+            display:flex;
+            justify-content: center;
+            margin-top:1em;
+        }
+        .dialog_header{
+            width:6em;
+            height:6em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:0 auto 0.6em;
+        }
+        .dialog_info .dialog_header{
+            background: url(images/info.png) no-repeat center center;
+            background-size: 100%;
+            position: relative;
+            top:-1em;
+            margin-bottom:0;
+        }
+        .dialog_right .dialog_header{
+            /*content: '';
+            display: block;
+            width:5em;
+            height:2em;
+            border:3px solid #fff;
+            border-width: 0 0 3px 3px;
+            transform: rotate(-50deg) translateY(-5px) translateX(15px);*/
+            background: url(images/right.png) no-repeat center center;
+            background-size: 100%;
+            position: relative;
+            top:-1em;
+            margin-bottom:0;
+        }
+        .dialog_loading .dialog_header{
+            width:3em;
+            height:3em;
+            background: url(images/loading.png) no-repeat center center;
+            background-size: 100%;
+            margin-bottom:0;
+            animation:round 3s linear infinite;
+        }
+        .dialog_more_btn .dialog_btn{
+            margin-right: .8em
+        }
+        .dialog_btn{
+            width:6em;
+            height:2.5em;
+            text-align: center;
+            line-height:2.5em;
+            border-radius: 8px;
+            margin-right:2em;
+            color:#fff;
+            font-size:.9em;
+        }
+        .dialog_btn_primary{
+            background:#2db7f5
+        }
+        .dialog_btn_default{
+            background:#f1f1f1;
+            color:#666;
+        }
+        .dialog_btn_ghost{
+            color:#666;
+            background:#fff;
+        }
+        .dialog_btn_dashed{
+            background:#f1f1f1;
+            border:1px dashed yellow;
+            color:#333;
+        }
+        .dialog_footer>div:last-child{
+            margin-right:0;
+        }
+        .dialog{
+            padding:2em;
+            background:rgba(0,0,0,0.7);
+            position: fixed;
+            text-align: center;
+        }
+        .dialog_loading{
+            padding:1em;
+        }
+        .dialog_red{
+            background:red;
+        }
+        .dialog_single_btn{
+            margin-top:1.2em;
+        }
+        .dialog_single_btn .dialog_btn{
+            width:12em;
+        }
+        @keyframes round
+        {
+            from {transform:rotate(0deg);}
+            to {transform:rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <div class="btn" id="loading">loading...</div>
+    <div class="btn" id="message">message info</div>
+    <div class="btn" id="confirm">dialog confirm</div>
+    <div class="btn" id="botton">more botton</div>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="dialog.js"></script>
+</body>
+</html>

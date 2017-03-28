@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function select(arr) {  
+            var len = arr.length,  
+                    i,j,temp,k;  
+            for (i=0;i<len;i++){     //遍历数组的每一个值，并于其后的值比较找出最小值之后互换  
+                k=i;  
+                for (j=i+1;j<len;j++){  
+                    if (arr[j]<arr[k])k=j;  
+                }  
+                if (k!=i){           //如果arr[i]已经是最小的则不需要互换  
+                    temp=arr[k];  
+                    arr[k]=arr[i];  
+                    arr[i]=temp;  
+                }  
+            }  
+            return arr;  
+        }  
+        alert(select([14,5,45,2,6,7,5,9])); 
+
+
+        function choice(array) {
+            var arr = array.slice(0),
+            k = null,
+            tmp
+            for(var i = 0; i < arr.length; i++) {
+                k = i
+                for(var j = i+1; j< arr.length; j++) {
+                    if(arr[k] > arr[j]) {
+                        k = j
+                    }
+                }
+                if(k!=i) {
+                    tmp = arr[k]
+                    arr[k] = arr[i]
+                    arr[i] = tmp
+                }
+            }
+            return arr
+        }
+        alert(choice([14,5,45,2,6,7,5,9])); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 普通方法
+        function Aaa() {
+
+        }
+        Aaa.prototype.init = function () {
+
+        }
+        Aaa.prototype.css = function () {
+            
+        }
+        var a1 = new Aaa();
+        console.log(a1)
+        // jquery方法
+        function Jquery(){
+            return new Jquery.prototype.init();
+        }
+        Jquery.prototype.init = function(){
+
+        }
+        Jquery.prototype.css = function(){
+            
+        }
+        Jquery.prototype.init.prototype = Jquery.prototype;
+        console.log(Jquery())
+    </script>
+</body>
+</html>

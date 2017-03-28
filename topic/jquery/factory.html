@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // (function(glabol, factory){
+        //     factory(glabol)
+        // })(window, function(window){
+        //     window.a = 1
+        // })
+        (function(window, undefined){
+            window.a = 1
+        })(window)
+        console.log(a)
+        // ie8下undefined会出错
+
+        // (46, 112)   定义公共方法   jQuery 构造对象
+        // (114， 193) 定义方法和对象
+        // (195, 262)  extends
+        // (544, 2945) 复杂选择器
+        // (3262, 3454) 回调函数
+        // (3496, 3834) deffered
+        // (10211) window.jQuery = window.$ = jQuery
+    </script>
+</body>
+</html>

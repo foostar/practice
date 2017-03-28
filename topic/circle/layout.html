@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <link type="text/css" href="css/style.css" rel="stylesheet" />
+    <script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+    <script src="example/js/touchScroll.js"></script>
+    <title>circle</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            -webkit-perspective: 800px;
+            perspective: 800px;
+            margin: 200px auto;
+        }
+        .roundWrap{
+            width: 100px;
+            height: 100px;
+            position: relative;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            transition: 5s;
+            -webkit-transform-origin: center center -153.88417685876263px;
+            transform-origin: center center -153.88417685876263px;
+        }
+        .box:hover .roundWrap {
+            transform: rotateX(-360deg);
+        }
+        .roundWrap div{
+            position: absolute;
+            left: 0;
+            top: 100px;
+            width: 100%;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transform-origin: top;
+            transform-origin: top;
+            -webkit-transform: rotateX(-36deg);
+            transform: rotateX(-36deg);
+        }
+        .roundWrap > div{
+            top: 0;
+            -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+        }
+        .roundWrap span{
+            width: 98px;
+            height: 98px;
+            background: #ccc;
+            border: 1px solid #000;
+            font: 50px / 98px "宋体";
+            text-align: center;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <div class="roundWrap">
+        </div>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

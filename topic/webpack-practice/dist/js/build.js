@@ -1,0 +1,1 @@
+webpackJsonp([0],[function(n,i,s){var c=s(1),t=s(2);s(3),document.write("<div>"+c+"</div>"),t(function(){t("div").click(function(){alert("a")})})},function(n,i){n.exports="hehehasdasdseassssdas"},,function(n,i){}]);

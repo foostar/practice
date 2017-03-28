@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function Person(name){
+            this.name = name
+        }
+        Person.prototype.sayName = function () {
+            console.log(this.name)
+        }
+        function Teacher(name, grage){
+            Person.call(name)
+            this.grage = grage
+        }
+        Teacher.prototype = new Person;
+        Teacher.prototype.sayHello = function () {
+            console.log(123)
+        }
+        var a1 = new Teacher('haha', 2)
+        console.log(a1)
+        console.log(Person.prototype)
+        var name = "The Window";   
+    　　 var object = {   
+    　　　　name : "My Object",   
+    　　　　getNameFunc : function(){   
+    　　　　　　return function(){   
+    　　　　　　　　return this.name;   
+    　　　　　};   
+    　　　　} 
+        }
+        console.log(object.getNameFunc())
+        // function outerFun()
+        // {
+        //  var a =0;
+        //  alert(a);  
+        // }
+        // var a=4;
+        // outerFun();
+        // alert(a);
+        var a = 4;
+        delete a
+        console.log(a)
+    </script>
+</body>
+</html>

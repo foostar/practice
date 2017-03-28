@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .div1{
+            width:200px;
+            height:200px;
+            background:blue;
+            padding:10px;
+            margin:15px;
+            border:2px solid red;
+            overflow:auto;
+        }
+        .div2{
+            width:100%;
+            height:240px;
+            background:yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"><div class="div2"></div></div>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        console.log($(".div1").width(),$(".div1").height())
+        console.log($(".div1").innerWidth(),$(".div1").innerHeight())
+        console.log($(".div1").outerWidth(),$(".div1").outerHeight())
+        console.log($(".div1").outerWidth(true),$(".div1").outerHeight(true))
+        var oDiv = document.querySelector(".div1");
+        console.log(oDiv.width,oDiv.clientWidth, oDiv.offsetWidth, oDiv.offsetHeight, oDiv.scrollHeight,oDiv.offsetWidth)
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function lazyMan(name) {
+            return new Lazyman(name)
+        }
+        function Lazyman(name) {
+            this.name = name
+            this.task = [() => {
+                return new Promise((reslove, reject) => {
+                    console.log("Hi! This is "+this.name+"!")
+                    reslove()
+                })
+            }]
+            setTimeout(() => {
+                function Queue (promiseArr) {
+                    let result = Promise.resolve()
+                    promiseArr.forEach((fn) => {
+                        result = result.then(fn)
+                    })
+                    return result
+                }
+                Queue(this.task)
+            },0)
+        }
+        Lazyman.prototype.eat = function(meat) {
+            function task () {
+                return new Promise((reslove, reject) => {
+                    console.log('EAT ' + meat)
+                    reslove()
+                })
+            }
+            this.task.push(task)
+            return this
+        }
+        Lazyman.prototype.sleep = function(second) {
+            this.task.push(() => {
+                return new Promise((reslove, reject) => {
+                    setTimeout(() => {
+                        console.log('Wake up after '+second+'')
+                        reslove()
+                    }, second * 1000)
+                })
+            })
+            return this
+        }
+        Lazyman.prototype.sleepFirst = function(second) {
+            this.task.unshift(() => {
+                return new Promise((reslove, reject) => {
+                    setTimeout(() => {
+                        console.log('Wake up after '+second+'')
+                        reslove()
+                    }, second * 1000)
+                })
+            })
+            return this
+        }
+        lazyMan('Hank').sleepFirst(5).eat('dinner').sleep(3).eat('supper')
+    </script>
+</body>
+</html>

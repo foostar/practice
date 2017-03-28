@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function bind(context) {
+            var args = Array.prototype.slice.call(arguments),
+            self = this
+            return function(){
+                return self.apply(context, args.slice(1).concat(arguments))
+            }
+        }
+        var a = {
+            name:1,
+            sayName:function(){
+                return this.name
+            }
+        }
+        var b = {
+            name:2
+        }
+        console.log(a.sayName.bind(b)())
+    </script>
+</body>
+</html>

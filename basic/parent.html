@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .children{
+            /*position: relative;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div class="children">
+            <div class="son">
+            </div>
+        </div>
+        <div class="children1">
+        </div>
+    </div>
+    <script type="text/javascript">
+        var son = document.querySelector('.son')
+        var children1 = document.querySelector('.children1')
+        var children = document.querySelector('.children')
+        children.insertBefore(children1,children.childNodes[0])
+        console.log(son)
+        console.log(son.parentElement)
+        console.log(son.parentNode)
+        console.log(son.offsetParent)
+    </script>
+</body>
+</html>

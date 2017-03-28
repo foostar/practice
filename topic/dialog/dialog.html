@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dialog</title>
+    <meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name=”format-detection” content=”telephone=no” />
+    <link type="text/css" href="dialog.css" rel="stylesheet">
+    <style>
+        body{
+            font-size:16px;
+        }
+        *{
+            margin:0;
+            padding:0;
+            list-style:none;
+            box-sizing: border-box;
+        }
+        .btn{
+            padding:10px 30px;
+            background:#886371;
+            color:#fff;
+            font-size:20px;
+            border-radius:10px;
+            margin-bottom:50px;
+        }
+        .dialog_container{
+            width:100%;
+            height:100%;
+            position: fixed;
+            left:0;
+            top:0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:#fff;
+        }
+        .dialog{
+            transform: scale(0);
+            border-radius: 10px;
+            max-width: 70%;
+            word-break: break-all;
+        }
+        .dialog_show .dialog{
+            transform: scale(1);
+            transition:all .6s cubic-bezier(0.4, 0.3, 0.44, 1.66)
+        }
+        .mask{
+            width:100%;
+            height:100%;
+            background:#000;
+            opacity:0.6;
+        }
+        .dialog_footer{
+            display:flex;
+            justify-content: center;
+            margin-top:1em;
+        }
+        .dialog_header{
+            width:6em;
+            height:6em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:0 auto 0.6em;
+        }
+        .dialog_info .dialog_header{
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAQAAACSoYmJAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAWVSURBVGje7VpbbBVFGP6ntbQUEVpbWkR7ibXgMcKxCpYGmmpFrGAANfEeiYlovOAlUaoGNMYoUYgvxkDQxNhEQ/DBRLwmlDbFpBTRUx+IGE2bRqxGqQ9QEKr9fHB2zuye3XNmZme7PJzvPPybPfN/37dz5szsXIjyyCOPPEzAbJKhmRZSEyUpQTPFzVN0hFL0HQ3S11bFQlotRAe6oIY9WIPieO0SOnBA0a6MFNaiIA7Ds7DZwK6MrZgzlYbL8YaPiVFsw1o0+JS/BKvxGoZ8cnageioMF+DRDOl3sVwxuxlvZWR3Ylq0lpM46RL8FisMWFrR6zG+NCrDDJ0uoY+xIARbPd73tPDz7Fu+EAOu//8VFjgbsF/iHMJFdi0vcNXKrRaZV7qYr7ZHvFSi7UaF1fogXIA9Ev+NdkjbJMqnYdexo/GApLEmPF2L9VrIrdMRjiohUV0VnWUiIsyXtK41p6mQaCz0Fjn16iS9GjOKQgwKiqR2di1WokU76zKhOIYSE9MvCoIbNDMX4YTI3QKt12gsEZlv61teLJIf08y80vtmopl/t8jUe0VAsUj8VK+TA+FXeNGsafsdkTlTJ+0ZkVauKViDTHRpcpSKzO3qSdUi6WY9OSI0+5ge1mZJ99qXqqbs5Am9+uOfq2d30KNNQ/jAaZ5qxecJsQalBHd2sY/pew145ors+SrFt/PC7+lLERFhvcfyhNn8G6/y/N25i54vxOrMTBPhecnyOC42ZKkUHJW5it7JC35papmICI14BT3YjXVh3gpF17cxV8GfzfrWKIDLRV1nG1VRJYoVxm2ZCIRxvy7Bu87TzuNW9q+RzDjOZHwWmZpmRM/xy1uyiXbzJzMUwmmfDs/YNBHqcw5PKBJChssn1k0XCJYZ6bvu5uFM4fvZWXMhm2CT5PTS0nDuNu3MTj4yFpnOGGP0uUXfn/DYFGR6MY8HLYqGRYrHZUGmnb55KG6nEo7xKC1xuk0v4fGvuJ1KOMljY5Bp54X/77idSvgn85b/JsJk3E7TYOkGktX0iXNoF4qI6A8V0+dS4/D142e6KG6Xufz4mZ4dzcqoMcpUTFvexw2NuuymJ3iMdrdJCyjIrFj3jUM8zorbqoRSHn8PMt3Po+FUNBJU8dgXZHqAx2TcTiUkeDwQZPp7HlfH7VSCs8w8EPA9pot5QqgzAvjM2syFcIazSAuhLnPsNP3EL802D+yjUvRkYwGmichZfV8Vt1uONh63ZRk6xJ7HWKiVIXvN4zDnuEa+661pp3mUkcGKqW2gWswMB7OYZqBn+aXmTkskuJ/HN9lE1nLSurDxuGineaBEMDS6v8no2tgofcEvN0RWg2q4g8cf6MfcT5gUTzjbsI4s1LQ0ZrR5v/MZRFiKvuGXmyOoP1U4/6k/qVftKReKp0woJaQz/dby/ofWwRZpY69VPelDnnJM72SRHdNg6OdZfRrjBeYIsRdiML1BZNXrqBPuMfiBCKP4LeCzTpkj3RE8qWWZCISvRHKtZnIISL/xEYMtFJRLP67mDrmx5RnScYB5ZhRNguAXrfMAppZLcEgoXmdOc7sgGTEdapS1SnFQqD0YjupxQTRhuveqpFOBEaH0Uni6TVLbjmhL1HUa53UrK1x4QqLcaH/RzHUE4GVr/LhLok2Zb/X7MM/FPon7Ybu14T4xs8nGwWEwPOJi1TyVpiJRJXVIAHCf3uE1DxvhNhfbsOHxQQUhd80AT5nMb1CKhzw8nWEqILdgLXo8gvuxSlUShBXY68kf9E6nojHeiuPwYgRb0Br8z0cLOnE0I2sSN+nrG/8oaKddFPTieJSGaYzO0jQqoxoKmkgcp/Vsb4R1G2A8gR0wQ5f+kVu71pdjl5bd68MOH9b+syiidlpG7eQ/0B+mfdRH3ezUVFZnHnnkESH+A1c2vrc4AqJ/AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE2LTExLTA3VDE1OjM0OjQxKzA4OjAwsFT/mwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNi0xMS0wN1QxNTozNDo0MSswODowMMEJRycAAAAASUVORK5CYII=) no-repeat center center;
+            background-size: 100%;
+            position: relative;
+            top:-1em;
+            margin-bottom:0;
+        }
+        .dialog_right .dialog_header:after{
+            content: '';
+            display: block;
+            width:5em;
+            height:2em;
+            border:3px solid #fff;
+            border-width: 0 0 3px 3px;
+            transform: rotate(-50deg) translateY(-5px) translateX(15px);
+            /*background: url(images/right.png) no-repeat center center;
+            background-size: 100%;
+            position: relative;
+            top:-1em;
+            margin-bottom:0;*/
+        }
+        .dialog_loading .dialog_header{
+            width:3em;
+            height:3em;
+            background: url(images/loading.png) no-repeat center center;
+            background-size: 100%;
+            margin-bottom:0;
+            animation:round 3s linear infinite;
+        }
+        .dialog_more_btn .dialog_btn{
+            margin-right: .8em
+        }
+        .dialog_btn{
+            width:6em;
+            height:2.5em;
+            text-align: center;
+            line-height:2.5em;
+            border-radius: 8px;
+            margin-right:2em;
+            color:#fff;
+            font-size:.9em;
+        }
+        .dialog_btn_primary{
+            background:#2db7f5
+        }
+        .dialog_btn_default{
+            background:#f1f1f1;
+            color:#666;
+        }
+        .dialog_btn_ghost{
+            color:#666;
+            background:#fff;
+        }
+        .dialog_btn_dashed{
+            background:#f1f1f1;
+            border:1px dashed yellow;
+            color:#333;
+        }
+        .dialog_footer>div:last-child{
+            margin-right:0;
+        }
+        .dialog{
+            padding:2em;
+            background:rgba(0,0,0,0.7);
+            position: fixed;
+            text-align: center;
+        }
+        .dialog_loading{
+            padding:1em;
+        }
+        .dialog_red{
+            background:red;
+        }
+        .dialog_single_btn{
+            margin-top:1.2em;
+        }
+        .dialog_single_btn .dialog_btn{
+            width:12em;
+        }
+        @keyframes round
+        {
+            from {transform:rotate(0deg);}
+            to {transform:rotate(360deg);}
+        }
+    </style>
+</head>
+<body>
+    <div class="btn" id="loading">loading...</div>
+    <div class="btn" id="message">message info</div>
+    <div class="btn" id="confirm">dialog confirm</div>
+    <div class="btn" id="botton">more botton</div>
+    <script src="jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src="dialog.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .InputAddOn{
+            width:200px;
+            height:45px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 1.5em;
+        }
+        .InputAddOn-field{
+            flex:1;
+        }
+        .InputAddOn-item{
+            background:red;
+            color:yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="InputAddOn">
+      <span class="InputAddOn-item">ahaha</span>
+      <input class="InputAddOn-field" placeholder="Example One">
+      <button class="InputAddOn-item">Send</button>
+    </div>
+</body>
+</html>

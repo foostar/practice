@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    function orderWeight(strng) {
+    
+        // your code
+        return strng.split(' ').sort((a, b) => {
+          let i = 0
+          const aWeight = a.split('').reduce((a,b) => parseInt(a)+parseInt(b))
+          const bWeight = b.split('').reduce((a,b) => parseInt(a)+parseInt(b))
+          if(aWeight == bWeight){
+            while(a.charAt(i) == b.charAt(i) && i < Math.min(a.length, b.length)) {
+              i++
+            }
+            return a.charAt(i) - b.charAt(i)
+          }
+          return aWeight - bWeight
+        }).join(' ')
+    }
+    console.log(orderWeight("2000 10003 1234000 44444444 9999 11 11 22 123"))
+  </script>
+</body>
+</html>

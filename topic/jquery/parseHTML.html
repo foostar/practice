@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+        const parseHTML = function( data, keepScripts ) {
+            var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
+            if ( typeof data !== "string" ) {
+                return [];
+            }
+
+            var base, parsed, scripts;
+
+            var context = document;
+
+            parsed = rsingleTag.exec( data );
+            console.log(parsed)
+            scripts = !keepScripts && [];
+
+            // Single tag
+            if ( parsed ) {
+                return [ context.createElement( parsed[ 1 ] ) ];
+            }
+
+            parsed = buildFragment( [ data ], context, scripts );
+
+            if ( scripts && scripts.length ) {
+                jQuery( scripts ).remove();
+            }
+
+            return Object.assign( [], parsed.childNodes );
+        };
+        parseHTML("<div></div><div></div><div></div><div></div>")
+    </script>
+</body>
+</html>

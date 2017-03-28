@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet/less" type="text/css" href="style.less" />
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        li{
+            list-style:none;
+            border-bottom:1px solid #333;
+            overflow:hidden;
+        }
+        .box{
+            width:50px;
+            height:50px;
+            margin:5px 0 5px 20px;
+            line-height:60px;
+            background:red;
+            float:left;
+        }
+        .handle{
+            float:right;
+            line-height:60px;
+            margin-right:10px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul class="list" id="list">
+        <li>
+            <div class="box"></div>
+            <a class="handle">我点</a>
+        </li>
+        <li>
+            <div class="box"></div>
+            <a class="handle">我点</a>
+        </li>
+        <li>
+            <div class="box"></div>
+            <a class="handle">我点</a>
+        </li>
+        <li>
+            <div class="box"></div>
+            <a class="handle">我点</a>
+        </li>
+        <li>
+            <div class="box"></div>
+            <a class="handle">我点</a>
+        </li>
+    </ul>
+    <script type="text/javascript" src="jquery-3.1.0.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+
+</body>
+</html>

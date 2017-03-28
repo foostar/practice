@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function formatDuration (seconds) {
+          // Complete this function
+          var arr = [],timeArr=[{name: 'year', time:3600*24*365}, {name: 'day', time: 3600*24}, {name: 'hour', time:3600}, {name: 'minute', time:60}],str = ''
+          timeArr.forEach((v) => {
+            if(seconds > v.time) {
+              arr.push(`${Math.floor(seconds/v.time)} ${Math.floor(seconds/v.time) == 1 ? v.name : `${v.name}s`}`)
+              seconds -= Math.floor(seconds/v.time)*v.time
+            }
+          })
+          if(seconds > 0) {
+            arr.push(`${seconds} seconds`)
+          }
+          if(arr.length < 3) {
+             return arr.join(' and ')
+          }
+          arr.forEach((v, index) => {
+              if(arr.length - index > 2) {
+                  str += `${v}, `
+              }
+              if(arr.length - index == 2) {
+                  str += `${v} and `
+              }
+              if(arr.length - index < 2) {
+                  str += v
+              }
+          })
+          return str
+        }
+        var result = formatDuration(3722)
+    </script>
+</body>
+</html>

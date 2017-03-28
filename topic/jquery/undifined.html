@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // XML情况下 xmlNode.method === undifined证据不充分
+        // alert(typeof aaa == 'undefined')
+        var $ = 10;
+    </script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        console.log($().jquery)
+        function isEmptyObject( obj ) {
+
+            /* eslint-disable no-unused-vars */
+            // See https://github.com/eslint/eslint/issues/6125
+            var name;
+
+            for ( name in obj ) {
+                console.log(name)
+                return false;
+            }
+            return true;
+        }
+        var a = {}
+        console.log(isEmptyObject(a))
+    </script>
+</body>
+</html>

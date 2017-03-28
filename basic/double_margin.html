@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .wrapper{
+            width:300px;
+            margin-left:100px;
+            height:100px;
+            margin-top:100px;
+            background:red;
+            /*
+             *  添加border解决：
+             *  border-top:1px solid red;
+             */
+            /*
+             *  使用padding代替：
+             *  padding-top:1px;
+             */
+        }
+        .inner{
+            width:100px;
+            margin-left:100px;
+            background:yellow;
+            height:100px;
+            margin-top:150px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 嵌套div -->
+    <div class="wrapper">
+        <div class="inner">
+        </div>
+    </div>
+</body>
+</html>

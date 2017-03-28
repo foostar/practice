@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function insert(array) {  
+            var len = array.length,  
+                    i, j, tmp, result;  
+            // 设置数组副本  
+            result = array.slice(0);  
+            for(i=1; i < len; i++){ //数组第一个值为默认的衡量值  
+                tmp = result[i];      //从第二个值开始与之前的值进行比较  
+                j = i - 1;           //之前已经排好序的数组的最后一个  
+                while(j>=0 && tmp < result[j]){   //如果j大于等于零（否则越界） 与最后一个值进行比较，如果小于  
+                    result[j+1] = result[j];       //则将最后一个值后移一位  
+                    j --;                          //j往前移动一位  
+                }  
+                result[j+1] = tmp;                 //比较完成 这时result[j]<temp或者j已经为-1，则将tmp的值赋给j+1  
+            }  
+            return result;  
+        }
+        function myinsert(array) {
+            var len = array.length
+            var j,tmp,result
+            result = array.slice(0)
+            for(let i = 0; i < len; i++) {
+                tmp = result[i]
+                j = i - 1
+                while(j >= 0 && tmp < result[j]) {
+                    result[j+1] = result[j]
+                    j--
+                }
+                result[j+1] = tmp
+            }
+            return result
+        }
+        function insert(array) {
+            var arr = array.slice(0),
+            len = arr.length,
+            j,tmp
+            for(var i = 0; i < len; i++) {
+                tmp = arr[i]
+                j = i - 1
+                while(j >= 0 && tmp < arr[j]) {
+                    arr[j+1] = arr[j]
+                    j--
+                }
+                arr[j+1] = tmp;
+            }
+            return result
+
+        }
+        </script>
+</body>
+</html>

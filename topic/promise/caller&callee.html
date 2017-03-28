@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <script type="text/javascript">
+        function a() {   
+            alert(a.caller);   
+        }   
+        var b = function() {   
+            a();   
+        }   
+        b();
+        // var a = function() {   
+        //     alert(arguments.callee);   
+        // }   
+        // var b = function() {   
+        //     a();   
+        // }   
+        // b();   
+        //a();
+    </script>
+</body>
+</html>
